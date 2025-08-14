@@ -26,6 +26,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/income", incomeRoutes);
 app.use("/api/v1/expense", expenseRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
+app.use("/api/status", (req, res) => res.send("Server is live"));
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
