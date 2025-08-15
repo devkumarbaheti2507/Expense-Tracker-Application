@@ -12,7 +12,16 @@ const app = express();
 
 app.use(
     cors({
-        origin: process.env.CLIENT_URL || "*",
+        origin: (origin, callback) => {
+        const allowed = (process.env.CLIENT_URL || "")
+            .split(',')
+            .map(url => url.trim());
+        if (!origin || allowed.includes(origin))
+            callback(null, true);
+        else
+            callback(new Error("Not allowed by CORS"));
+        },
+        credentials: true,
         methods: ["GET", "POST", "PUT", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization"],
     })
