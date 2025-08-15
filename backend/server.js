@@ -22,6 +22,7 @@ app.use(express.json());
 
 connectDB();
 
+app.use("/api/v1/", (req, res) => res.send("Backend Working"));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/income", incomeRoutes);
 app.use("/api/v1/expense", expenseRoutes);
